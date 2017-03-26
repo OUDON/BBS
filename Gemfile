@@ -34,7 +34,7 @@ group :development, :test do
   gem 'pry-stack_explorer'
 end
 
-group :test do
+group :development, :test do
   gem 'rspec-rails', '>= 3.5.1'
   gem 'capybara'
   gem 'factory_girl_rails'
