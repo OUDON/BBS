@@ -13,6 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -38,4 +39,5 @@ group :development, :test do
   gem 'rspec-rails', '>= 3.5.1'
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'database_cleaner'
 end
