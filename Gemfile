@@ -27,6 +27,7 @@ group :development do
 end
 
 gem 'haml-rails'
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'pry-rails'
