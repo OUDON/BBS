@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'User management', type: :feature do
   scenario "adds a new user" do
-    visit new_user_path
+    visit signup_path
 
     expect {
       fill_in "Name", with: "oudon"
