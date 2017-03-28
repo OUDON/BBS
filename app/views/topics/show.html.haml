@@ -1,1 +1,23 @@
 %h1 #{ @topic.title }
+
+%h2 Posts
+- if @posts.any?
+  - @posts.each do |post|
+    .post-header
+      %span= post.user.name
+      %span= post.created_at
+    .post-content.lead
+      = simple_format(post.content)
+    <hr />
+- else
+  %p There is no post
+
+%h2 Add New Post
+.post-form
+  - if logged_in?
+    = form_for([@topic, @new_post]) do |f|
+      = render 'shared/error_messages', object: f.object
+      = f.text_area :content, class: 'form-control'
+      = f.submit "Add", class: 'btn btn-primary'
+  - else
+    %p Pleas #{ link_to "login", login_path } to add post

@@ -8,6 +8,9 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    @posts = @topic.posts
+    @new_post = Post.new
+    @user = current_user
   end
 
   def create

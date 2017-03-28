@@ -9,9 +9,24 @@ h1 {
   text-align: center;
 }
 
-/* form */
+/* topic */
+.post-header {
+  margin-bottom: 10px;
+  span {
+    margin-right: 10px;
+  }
+}
 
+.post-content {
+  margin-left: 20px;
+}
+
+/* form */
 input {
+  margin-bottom: 10px;
+}
+
+textarea {
   margin-bottom: 10px;
 }
 
