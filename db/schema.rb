@@ -13,8 +13,8 @@
 ActiveRecord::Schema.define(version: 20170328113057) do
 
   create_table "topics", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "user_id"
+    t.string   "title",      null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["title"], name: "index_topics_on_title"
