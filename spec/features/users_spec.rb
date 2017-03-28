@@ -35,5 +35,17 @@ RSpec.feature 'User', type: :feature do
       expect(page).to have_content("Profile updated")
       expect(page).to have_content("updated user name")
     end
+
+    scenario "creates new topics" do
+      visit root_path
+
+      expect {
+        fill_in "Topic Title", with: "Lorem ipsum"
+        click_button "Create"
+      }.to change(Topic, :count).by(1)
+
+      expect(current_path).to eq topic_path(Topic.last)
+      expect(page).to have_content("Your topic is created")
+    end
   end
 end

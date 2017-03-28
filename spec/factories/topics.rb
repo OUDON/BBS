@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :topic do
-    title "MyString"
-    user_id 1
+    association :user
+    title "Lorem ipsum"
   end
 end
