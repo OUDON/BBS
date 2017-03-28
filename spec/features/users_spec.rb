@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-RSpec.feature 'User management', type: :feature do
+RSpec.feature 'User', type: :feature do
   scenario "adds a new user" do
-    visit signup_path
+    visit root_path
+    click_link "Sign up"
 
     expect {
       fill_in "Name", with: "oudon"
@@ -13,5 +14,26 @@ RSpec.feature 'User management', type: :feature do
 
     expect(current_path).to eq user_path(User.last)
     expect(page).to have_content("Your registration is successful")
+  end
+
+  context "with logged in user" do
+    before :each do
+      @user = create(:user)
+      log_in @user
+    end
+
+    scenario "updates a user profile" do
+      visit root_path
+      click_link "Settings"
+      
+      fill_in "Name", with: "updated user name"
+      fill_in "Password", with: @user.password
+      fill_in "Confirmation", with: @user.password
+      click_button "Update"
+
+      expect(current_path).to eq user_path(@user)
+      expect(page).to have_content("Profile updated")
+      expect(page).to have_content("updated user name")
+    end
   end
 end
