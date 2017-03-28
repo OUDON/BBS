@@ -7,14 +7,7 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   %body
+    = render 'layouts/header'
     .container
-      - if current_user
-        .text-right 
-          %p Logged in as #{ current_user.name }
-          = link_to "Log out", logout_path, method: :delete
-      - else
-        %p.text-right #{ link_to "Log in", login_path }
-
       = render 'layouts/flash_message'
-
       = yield
