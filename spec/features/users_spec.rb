@@ -36,6 +36,13 @@ RSpec.feature 'User', type: :feature do
       expect(page).to have_content("updated user name")
     end
 
+    scenario "can not update other user's profile" do
+      other_user = create(:user, name: "andrew")
+      visit edit_user_path(other_user)
+      expect(current_path).to eq root_path
+      expect(page).to have_content("Permission denied")
+    end
+
     scenario "creates new topics" do
       visit root_path
 
