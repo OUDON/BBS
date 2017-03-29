@@ -1,6 +1,9 @@
 %h1 Topics
 %h2 Topic List
-= render 'shared/topic_list', topics: @topics
+- if @topics.any?
+  = render 'shared/topic_list', topics: @topics
+- else
+  %p There is no topic
 
 %h2 Create New Topic
 - if logged_in?
