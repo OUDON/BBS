@@ -4,4 +4,6 @@ class Topic < ApplicationRecord
 
   belongs_to :user
   has_many :posts, dependent: :destroy
+
+  scope :search, ->(query) { where('lower(title) like ?', "%#{ query.downcase }%") }
 end

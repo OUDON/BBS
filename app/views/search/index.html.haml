@@ -1,0 +1,6 @@
+%h1 Search results
+- if @topics.any?
+  = render 'shared/topic_list', topics: @topics
+- else
+  %p No topics matched your search.
+  %p Please retry.

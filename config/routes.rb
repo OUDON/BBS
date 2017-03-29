@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :topics, only: [:index, :show, :create, :destroy] do
     resources :posts, only: [:create]
   end
+
+  get '/search', to: 'search#index', as: 'search'
 end

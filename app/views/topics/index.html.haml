@@ -1,8 +1,6 @@
 %h1 Topics
 %h2 Topic List
-%ol.topics.list-group
-- @topics.each do |topic|
-  %li.list-group-item.topic-title= link_to topic.title, topic
+= render 'shared/topic_list', topics: @topics
 
 %h2 Create New Topic
 - if logged_in?
