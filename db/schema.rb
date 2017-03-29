@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328163828) do
+ActiveRecord::Schema.define(version: 20170329095223) do
 
   create_table "posts", force: :cascade do |t|
-    t.text     "content",    null: false
+    t.text     "content",     null: false
     t.integer  "user_id"
     t.integer  "topic_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "in_topic_id"
+    t.index ["topic_id", "in_topic_id"], name: "index_posts_on_topic_id_and_in_topic_id", unique: true
     t.index ["topic_id"], name: "index_posts_on_topic_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
