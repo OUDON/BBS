@@ -3,7 +3,9 @@
 %h2 Posts
 - if @posts.any?
   - @posts.each do |post|
+    .post{ id: "post-#{post.id}" }
     .post-header
+      %span= "#{ post.in_topic_id }: "
       %span= post.user.name
       %span= post.created_at
     .post-content.lead
@@ -17,7 +19,7 @@
   - if logged_in?
     = form_for([@topic, @new_post]) do |f|
       = render 'shared/error_messages', object: f.object
-      = f.text_area :content, class: 'form-control'
+      = f.text_area :content, class: 'form-control', placeholder: 'Content'
       = f.submit "Add", class: 'btn btn-primary'
   - else
     %p Pleas #{ link_to "login", login_path } to add post

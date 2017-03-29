@@ -55,4 +55,25 @@ RSpec.feature "Logged in user" do
     expect(current_path).to eq topic_path(Topic.last)
     expect(page).to have_content("Your topic is created")
   end
+
+  context "with a topic" do
+    before :each do
+      visit root_path
+      fill_in "Topic Title", with: "Lorem ipsum"
+      click_button "Create"
+    end
+
+    scenario "add a new post" do
+      visit root_path
+      click_link "Lorem ipsum"
+
+      expect {
+        fill_in "Content", with: "my post"
+        click_button "Add"
+      }.to change(Post, :count).by(1)
+
+      expect(current_path).to eq topic_path(Topic.last)
+      expect(page).to have_content("1: #{ @user.name }")
+    end
+  end
 end
