@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   validates :topic,   presence: true
 
   belongs_to :user
-  belongs_to :topic
+  belongs_to :topic, touch: true
 
   scope :in_topic, ->(topic_id) { where(topic_id: topic_id) }
 end
