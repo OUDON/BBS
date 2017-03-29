@@ -14,13 +14,14 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.new(topic_params)
-    @topic.user_id = current_user.id
-    if @topic.save
+    @new_topic = Topic.new(topic_params)
+    @new_topic.user_id = current_user.id
+    if @new_topic.save
       flash[:success] = "Your topic is created"
-      redirect_to @topic
+      redirect_to @new_topic
     else
-      render 'new'
+      @topics = Topic.order(updated_at: :desc)
+      render action: :index
     end
   end
 

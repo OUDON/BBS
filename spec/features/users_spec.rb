@@ -56,6 +56,17 @@ RSpec.feature "Logged in user" do
     expect(page).to have_content("Your topic is created")
   end
 
+  scenario "can not create invalid topics" do
+    visit root_path
+
+    expect {
+      click_button "Create"
+    }.not_to change(Topic, :count)
+
+    expect(current_path).to eq topics_path
+    expect(page).to have_content("can't be blank")
+  end
+
   context "with a topic" do
     before :each do
       visit root_path
