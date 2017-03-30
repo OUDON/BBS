@@ -1,1 +1,13 @@
-%h2 #{ @user.name }
+%h1 #{ @user.name }
+
+%h2 #{ @user.name }'s topics
+- if @user.topics.any?
+  = render 'shared/topic_list', topics: @user.topics
+- else
+  %p #{ @user.name } did not create topics
+
+%h2 #{ @user.name }'s posts
+- if @user.posts.any?
+  = render 'posts_list', posts: @user.posts
+- else
+  %p #{ @user.name } did not create posts

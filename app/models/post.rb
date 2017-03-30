@@ -7,5 +7,6 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :topic, touch: true
 
+  scope :ordered_by_updated_at, -> { order(updated_at: :desc) }
   scope :in_topic, ->(topic_id) { where(topic_id: topic_id) }
 end

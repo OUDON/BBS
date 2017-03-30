@@ -14,10 +14,10 @@ RSpec.feature "Sessions", type: :feature do
     click_button "Log in"
 
     expect(current_path).to eq root_path
-    expect(page).to have_content("Logged in as #{ @user.name }")
+    expect(page).to have_content("#{ @user.name }")
 
     click_link "Log out"
     expect(current_path).to eq root_path
-    expect(page).not_to have_content("Logged in as #{ @user.name }")
+    expect(page).not_to have_content("#{ @user.name }")
   end
 end

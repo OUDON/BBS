@@ -1,0 +1,5 @@
+- posts.each do |post|
+  .topic-title
+    = link_to post.topic.title, post.topic
+  .post-overview
+    = render post

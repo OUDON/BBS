@@ -8,5 +8,9 @@ FactoryGirl.define do
         create(:post, user: topic.user)
       end
     end
+
+    factory :invalid_topic do
+      title nil
+    end
   end
 end

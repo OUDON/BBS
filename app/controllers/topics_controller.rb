@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
 
   def index
-    @topics = Topic.order(updated_at: :desc)
+    @topics = Topic.ordered_by_updated_at
     @new_topic = Topic.new
   end
 
@@ -20,7 +20,7 @@ class TopicsController < ApplicationController
       flash[:success] = "Your topic is created"
       redirect_to @new_topic
     else
-      @topics = Topic.order(updated_at: :desc)
+      @topics = Topic.ordered_by_updated_at
       render action: :index
     end
   end
