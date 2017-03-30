@@ -7,7 +7,7 @@
 
 %h2 Create New Topic
 - if logged_in?
-  = form_for(@new_topic) do |f|
+  = form_for(@topic) do |f|
     = render 'shared/error_messages', object: f.object
     = f.text_field :title, class: 'form-control', placeholder: "Topic Title"
     = f.submit "Create", class: 'btn btn-primary'

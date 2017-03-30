@@ -74,7 +74,7 @@ RSpec.feature "Logged in user" do
       click_button "Create"
     end
 
-    scenario "add a new post" do
+    scenario "adds a new post" do
       visit root_path
       click_link "Lorem ipsum"
 
@@ -85,6 +85,19 @@ RSpec.feature "Logged in user" do
 
       expect(current_path).to eq topic_path(Topic.last)
       expect(page).to have_content("1: #{ @user.name }")
+    end
+
+    scenario "adds a invalid post" do
+      visit root_path
+      click_link "Lorem ipsum"
+
+      expect {
+        click_button "Add"
+      }.not_to change(Post, :count)
+
+      expect(current_path).to eq topic_posts_path(Topic.last)
+      expect(page).to have_content("can't be blank")
+      expect(page).not_to have_content("1: #{ @user.name }")
     end
   end
 end

@@ -9,7 +9,7 @@
 %h2 Add New Post
 .post-form
   - if logged_in?
-    = form_for([@topic, @new_post]) do |f|
+    = form_for([@topic, @post]) do |f|
       = render 'shared/error_messages', object: f.object
       = f.text_area :content, class: 'form-control', placeholder: 'Content'
       = f.submit "Add", class: 'btn btn-primary'

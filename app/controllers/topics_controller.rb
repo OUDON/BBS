@@ -3,22 +3,21 @@ class TopicsController < ApplicationController
 
   def index
     @topics = Topic.ordered_by_updated_at
-    @new_topic = Topic.new
+    @topic  = Topic.new
   end
 
   def show
     @topic = Topic.find(params[:id])
-    @posts = @topic.posts
-    @new_post = Post.new
-    @user = current_user
+    @user  = current_user
+    @posts = @topic.posts.all
+    @post  = Post.new
   end
 
   def create
-    @new_topic = Topic.new(topic_params)
-    @new_topic.user_id = current_user.id
-    if @new_topic.save
+    @topic = current_user.topics.new(topic_params)
+    if @topic.save
       flash[:success] = "Your topic is created"
-      redirect_to @new_topic
+      redirect_to @topic
     else
       @topics = Topic.ordered_by_updated_at
       render action: :index
