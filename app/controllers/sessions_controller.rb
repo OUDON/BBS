@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :not_logged_in, only: [:new, :create]
+
   def new
   end
 
@@ -17,5 +19,13 @@ class SessionsController < ApplicationController
   def destroy
     log_out
     redirect_to root_url
+  end
+
+  private
+  def not_logged_in
+    if logged_in?
+      flash[:warning] = "You are already logged in"
+      redirect_to root_path
+    end
   end
 end

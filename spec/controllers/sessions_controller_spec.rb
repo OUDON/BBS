@@ -44,7 +44,10 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   context "with logged in user" do
-    let!(:user) { create(:user) }
+    before :each do
+      user = create(:user)
+      set_user_session user
+    end
 
     it "GET #new denies access" do
       get :new
