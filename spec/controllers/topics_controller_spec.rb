@@ -36,12 +36,12 @@ RSpec.describe TopicsController, type: :controller do
       context "with valid attributes" do
         it "saves the new topic in the database" do
           expect {
-            post :create, topic: attributes_for(:topic, user: @user)
+            post :create, params: { topic: attributes_for(:topic, user: @user) }
           }.to change(Topic, :count).by(1)
         end
 
         it "redirects to topics#show" do
-          post :create, topic: attributes_for(:topic, user: @user)
+          post :create, params: { topic: attributes_for(:topic, user: @user) }
           expect(response).to redirect_to(assigns[:topic])
         end
       end
