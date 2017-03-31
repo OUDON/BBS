@@ -2,3 +2,4 @@
 .row
   .col-md-6.col-md-offset-3
     = render 'user_form', user: @user, button_text: "Update"
+    = link_to 'Delete my account', user_path(@user), method: :delete
