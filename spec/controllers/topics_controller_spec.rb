@@ -24,6 +24,17 @@ RSpec.describe TopicsController, type: :controller do
   end
 
   describe "GET #show" do
+    let!(:topic) { create(:topic) }
+
+    it "assigns the requested topic to @topic" do
+      get :show, params: { id: topic }
+      expect(assigns(:topic)).to eq topic
+    end
+
+    it "renders the :show template" do
+      get :show, params: { id: topic }
+      expect(response).to render_template :show
+    end
   end
 
   context "with logged in user" do
@@ -43,6 +54,19 @@ RSpec.describe TopicsController, type: :controller do
         it "redirects to topics#show" do
           post :create, params: { topic: attributes_for(:topic, user: @user) }
           expect(response).to redirect_to(assigns[:topic])
+        end
+      end
+
+      context "with invalid attributes" do
+        it "does not save the new topic in the database" do
+          expect {
+            post :create, params: { topic: attributes_for(:invalid_topic) }
+          }.not_to change(Topic, :count)
+        end
+
+        it "re-renders the :index template" do
+          post :create, params: { topic: attributes_for(:invalid_topic) }
+          expect(page).to render_template :index
         end
       end
     end
